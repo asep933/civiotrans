@@ -166,10 +166,11 @@
                   >Get Started</a
                 >
                 <a
-                  href=""
+                  href="contact.html"
                   class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight"
-                  >Contact</a
                 >
+                  Contact
+                </a>
               </div>
             </div>
           </div>
@@ -297,48 +298,50 @@
 
     <!-- Video Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-      <div
-        class="container py-5 d-flex align-items-center justify-content-center"
-      >
-        <div class="col-md-10 col-lg-8">
-          <div
-            class="video-container ratio ratio-16x9 bg-dark rounded-3 overflow-hidden"
-          >
-            <img
-              src="img/thumbnail-video.PNG"
-              class="video-thumbnail img-fluid"
-              alt="Video thumbnail"
-              id="videoThumbnail"
-            />
-
-            <video
-              class="video-player"
-              id="mainVideo"
-              controls
-              style="display: none"
-            >
-              <source src="video/video.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung pemutaran video.
-            </video>
-
-            <!-- Play Button Container -->
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8">
+            <!-- Perubahan pada class column -->
             <div
-              class="position-absolute top-50 start-50 translate-middle w-100 h-100"
+              class="video-container ratio ratio-16x9 bg-dark rounded-3 overflow-hidden position-relative"
             >
-              <div
-                class="d-flex justify-content-center align-items-center w-100 h-100"
+              <!-- Thumbnail Video -->
+              <img
+                src="img/thumbnail-video.PNG"
+                class="video-thumbnail img-fluid"
+                alt="Video thumbnail"
+                id="videoThumbnail"
+              />
+
+              <!-- Video Player -->
+              <video
+                class="video-player"
+                id="mainVideo"
+                controls
+                style="opacity: 0"
               >
-                <button
-                  class="btn-play btn btn-danger rounded-circle shadow-lg position-relative"
-                  id="playButton"
-                  style="z-index: 2"
+                <source src="video/video.mp4" type="video/mp4" />
+                Browser Anda tidak mendukung pemutaran video.
+              </video>
+
+              <!-- Play Button Container -->
+              <div
+                class="position-absolute top-50 start-50 translate-middle w-100 h-100"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center w-100 h-100"
                 >
-                  <i class="bi bi-play-fill fs-2"></i>
-                  <!-- Pulse Effect -->
-                  <div
-                    class="position-absolute start-50 top-50 translate-middle rounded-circle pulse-effect"
-                  ></div>
-                </button>
+                  <button
+                    class="btn-play btn btn-danger rounded-circle shadow-lg position-relative"
+                    id="playButton"
+                    style="z-index: 2; opacity: 1"
+                  >
+                    <i class="bi bi-play-fill fs-2"></i>
+                    <div
+                      class="position-absolute start-50 top-50 translate-middle rounded-circle pulse-effect"
+                    ></div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -347,8 +350,23 @@
     </div>
 
     <style>
+      .video-container > .video-thumbnail,
+      .video-container > .video-player {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s ease;
+      }
+
+      .video-container:hover .video-thumbnail {
+        filter: brightness(0.6);
+      }
+
+      /* Tetap pertahankan styling lainnya */
       .video-container {
-        position: relative;
         cursor: pointer;
         transition: transform 0.3s ease;
       }
@@ -370,17 +388,25 @@
         opacity: 1;
       }
 
-      .video-thumbnail {
-        filter: brightness(0.8);
-        transition: filter 0.3s ease;
-        object-fit: cover;
+      /* Responsive Play Button */
+      @media (max-width: 768px) {
+        .btn-play {
+          width: 50px;
+          height: 50px;
+        }
+        .btn-play i {
+          font-size: 1.25rem !important;
+        }
+        .pulse-effect {
+          animation: pulse 1.2s ease-out infinite;
+        }
       }
 
-      .video-container:hover .video-thumbnail {
-        filter: brightness(0.6);
+      /* Minimum Container Width */
+      .video-container {
+        min-width: 300px; /* Mencegah container terlalu kecil */
       }
 
-      /* Pulse Animation */
       @keyframes pulse {
         0% {
           transform: scale(1);
@@ -408,23 +434,24 @@
       const videoPlayer = document.getElementById("mainVideo");
 
       playButton.addEventListener("click", function () {
-        videoThumbnail.style.display = "none";
-        playButton.style.display = "none";
-        videoPlayer.style.display = "block";
+        // Saat tombol play diklik, sembunyikan thumbnail dan tombol play dengan mengubah opacity
+        videoThumbnail.style.opacity = "0";
+        playButton.style.opacity = "0";
+        videoPlayer.style.opacity = "1"; // Tampilkan video
         videoPlayer.play();
       });
 
       videoPlayer.addEventListener("ended", function () {
-        videoThumbnail.style.display = "block";
-        playButton.style.display = "block";
-        videoPlayer.style.display = "none";
+        // Saat video selesai, kembalikan tampilan thumbnail dan tombol play
+        videoThumbnail.style.opacity = "1";
+        playButton.style.opacity = "1";
+        videoPlayer.style.opacity = "0";
       });
 
-      // Tambahan untuk handle pause
       videoPlayer.addEventListener("pause", function () {
         if (!videoPlayer.ended) {
-          videoThumbnail.style.display = "none";
-          playButton.style.display = "block";
+          // Jika video dipause, tampilkan kembali tombol play (tetap biarkan video di layout)
+          playButton.style.opacity = "1";
         }
       });
     </script>
