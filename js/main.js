@@ -2445,7 +2445,7 @@
 const galleryData = [
   {
     thumb: "img/galleries/image-1.jpg",
-    full: "img/galleries/image-1.jpg", // perbaikan path
+    full: "img/galleries/image-1.jpg",
     description: "Deskripsi Gambar 1",
   },
   {
