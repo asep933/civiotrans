@@ -1,11 +1,16 @@
-  =>  Template Name    : Startup - Startup Website Template
+# Civiotrans Landing Page
 
-  =>  Template Link    : https://htmlcodex.com/startup-website-template
+Landing page Civiotrans adalah website sederhana yang dibuat untuk memberikan informasi mengenai perusahaan, layanan, dan cara menghubungi kami. Website ini menggunakan HTML, CSS, dan JavaScript murni.
 
-  =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
+## Fitur
 
-  =>  Template Author  : HTML Codex
+- **Home:** Menampilkan informasi ringkas tentang Civiotrans dan navigasi ke halaman lain.
+- **About:** Menjelaskan profil dan sejarah perusahaan.
+- **Service:** Menampilkan daftar layanan yang ditawarkan.
+- **Contact:** Menyediakan informasi kontak untuk menghubungi perusahaan.
 
-  =>  Author Website   : https://htmlcodex.com
+## Teknologi yang Digunakan
 
-  =>  About HTML Codex : HTML Codex is one of the top creators and publishers of Free HTML templates, HTML landing pages, HTML email templates and HTML snippets in the world. Read more at ( https://htmlcodex.com/about-us )
+- **HTML:** Struktur konten website.
+- **CSS:** Styling dan layout website.
+- **JavaScript:** Interaksi dan dinamika halaman.
